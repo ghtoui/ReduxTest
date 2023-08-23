@@ -18,6 +18,8 @@ extension CounterReducer {
     ) -> CounterState {
         var state = state ?? CounterState()
         
+        let colorSelecter = ColorSelector()
+        
         // actionが無いなら何も変更せず返す
         guard let action = action as? CounterState.counterAction else {
             return state
@@ -25,7 +27,7 @@ extension CounterReducer {
         switch action {
         case .touchButton:
             state.count += 1
-            
+            state.backgroundColor = colorSelecter.getColor(counter: state.count)
         }
         return state
     }

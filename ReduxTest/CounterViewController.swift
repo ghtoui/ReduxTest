@@ -42,6 +42,10 @@ extension CounterViewController: StoreSubscriber {
     
     // ここに値の更新処理を書く
     func newState(state: AppState) {
+        // labelTextをボタンを押した回数に
         counterLabel.text = String(state.counterState.count)
+        
+        // labelTextの背景色をボタンを押した数に応じて変える
+        counterLabel.backgroundColor = state.counterState.backgroundColor
     }
 }

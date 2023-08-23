@@ -7,6 +7,7 @@
 
 import Foundation
 import ReSwift
+import UIKit.UIColor
 
 struct AppState {
     var counterState = CounterState()
@@ -14,4 +15,5 @@ struct AppState {
 
 struct CounterState {
     var count: Int = 0
+    var backgroundColor: UIColor = UIColor.white
 }
