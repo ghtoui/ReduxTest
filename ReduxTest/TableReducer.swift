@@ -1,5 +1,5 @@
 //
-//  Action.swift
+//  TableReducer.swift
 //  ReduxTest
 //
 //  Created by toui on 2023/08/26.
