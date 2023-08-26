@@ -22,8 +22,10 @@ extension TableReducer {
         }
         
         switch action {
-        case .touchButton:
+        case .displayButtonTapped:
             state.dataSource = ["aiueo", "kakikukeko", "sasisuseso"]
+        case .hideButtonTapped:
+            state.dataSource = []
         }
         
         return state

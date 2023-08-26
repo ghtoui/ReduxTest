@@ -20,15 +20,21 @@ class TableViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         appStore.subscribe(self)
+        tableView.dataSource = self
     }
     
-    @IBAction func buttonTapped(_ sender: UIButton) {
+    @IBAction func displayButtonTapped(_ sender: UIButton) {
         // Stateのアクションを実行
-        let action = TableState.tableAction.touchButton
+        let action = TableState.tableAction.displayButtonTapped
         // actionを渡す
         appStore.dispatch(action)
-        
-        tableView.dataSource = self
+    }
+    
+    @IBAction func hideButtonTapped(_ sender: UIButton) {
+        // Stateのアクションを実行
+        let action = TableState.tableAction.hideButtonTapped
+        // actionを渡す
+        appStore.dispatch(action)
     }
 
     /*
@@ -45,12 +51,11 @@ class TableViewController: UIViewController {
 
 extension TableViewController: StoreSubscriber {
     func newState(state: AppState) {
-        dataSource = state.tableState.dataSource
-        // TableViewをリロード
-        tableView.reloadData()
+        tableViewReload(data: state.tableState.dataSource)
     }
 }
 
+// tableViewのデータを定義する場所
 extension TableViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
@@ -62,6 +67,13 @@ extension TableViewController: UITableViewDataSource{
                cell.textLabel?.text = dataSource[indexPath.row]
                
                return cell
+    }
+    
+    // tableViewに挿入するデータを変えれば、テーブルビューが変わる
+    private func tableViewReload(data: [String]) {
+        dataSource = data
+        // リロードする
+        tableView.reloadData()
     }
     
 }

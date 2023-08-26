@@ -17,5 +17,7 @@ func appReduce(
     // それぞれのReducerを集約
     state.counterState = CounterReducer.reducer(action: action, state: state.counterState)
     
+    state.tableState = TableReducer.reducer(action: action, state: state.tableState)
+    
     return state
 }

@@ -10,6 +10,7 @@ import ReSwift
 
 extension TableState {
     enum tableAction: ReSwift.Action {
-        case touchButton
+        case displayButtonTapped
+        case hideButtonTapped
     }
 }
