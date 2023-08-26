@@ -6,3 +6,6 @@
 //
 
 import Foundation
+import ReSwift
+
+protocol Action { }

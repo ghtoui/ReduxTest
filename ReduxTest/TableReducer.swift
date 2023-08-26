@@ -6,3 +6,27 @@
 //
 
 import Foundation
+import ReSwift
+
+struct TableReducer { }
+
+extension TableReducer {
+    public static func reducer(
+        action: ReSwift.Action,
+        state: TableState?
+    ) -> TableState {
+        var state = state ?? TableState()
+        
+        guard let action = action as? TableState.tableAction else {
+            return state
+        }
+        
+        switch action {
+        case .touchButton:
+            state.dataSource = ["aiueo", "kakikukeko", "sasisuseso"]
+        }
+        
+        return state
+    }
+}
+

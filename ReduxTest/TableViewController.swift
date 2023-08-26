@@ -6,15 +6,30 @@
 //
 
 import UIKit
+import ReSwift
 
 class TableViewController: UIViewController {
+    
+    @IBOutlet weak var visibleButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
 
+    private var dataSource: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        appStore.subscribe(self)
     }
     
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        // Stateのアクションを実行
+        let action = TableState.tableAction.touchButton
+        // actionを渡す
+        appStore.dispatch(action)
+        
+        tableView.dataSource = self
+    }
 
     /*
     // MARK: - Navigation
@@ -26,4 +41,27 @@ class TableViewController: UIViewController {
     }
     */
 
+}
+
+extension TableViewController: StoreSubscriber {
+    func newState(state: AppState) {
+        dataSource = state.tableState.dataSource
+        // TableViewをリロード
+        tableView.reloadData()
+    }
+}
+
+extension TableViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "tableViewCell")
+               
+               cell.textLabel?.text = dataSource[indexPath.row]
+               
+               return cell
+    }
+    
 }

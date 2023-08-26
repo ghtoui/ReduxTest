@@ -8,3 +8,7 @@
 import Foundation
 import ReSwift
 
+let appStore = Store(
+    reducer: appReduce,
+    state: nil,
+    middleware: [])

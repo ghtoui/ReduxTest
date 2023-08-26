@@ -33,7 +33,3 @@ extension CounterReducer {
     }
 }
 
-let appStore = Store(
-    reducer: appReduce,
-    state: nil,
-    middleware: [])

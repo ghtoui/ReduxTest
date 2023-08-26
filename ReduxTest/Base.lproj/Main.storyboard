@@ -30,6 +30,15 @@
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eEX-5E-XZr"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqB-68-jPg">
+                                <rect key="frame" x="164" y="666" width="66" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="move"/>
+                                <connections>
+                                    <segue destination="PzL-j8-pKp" kind="show" id="UaK-St-ZP8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -52,6 +61,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-8.3969465648854964" y="3.5211267605633805"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="EDr-nQ-3Se">
+            <objects>
+                <viewController id="PzL-j8-pKp" customClass="TableViewController" customModule="ReduxTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="igq-hd-Jfh">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7sk-Ke-WHE">
+                                <rect key="frame" x="159" y="79" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="PzL-j8-pKp" eventType="touchUpInside" id="pPJ-hv-QcC"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mho-yx-Fnm">
+                                <rect key="frame" x="0.0" y="209" width="393" height="633"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="tableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="PwN-xw-0vV">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PwN-xw-0vV" id="BGy-vw-Lel">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ila-Bf-318"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ila-Bf-318" firstAttribute="trailing" secondItem="mho-yx-Fnm" secondAttribute="trailing" id="2aG-f4-5Pz"/>
+                            <constraint firstItem="mho-yx-Fnm" firstAttribute="leading" secondItem="ila-Bf-318" secondAttribute="leading" id="2kg-Bx-iRe"/>
+                            <constraint firstItem="ila-Bf-318" firstAttribute="bottom" secondItem="mho-yx-Fnm" secondAttribute="bottom" id="CNT-hX-8Fa"/>
+                            <constraint firstItem="7sk-Ke-WHE" firstAttribute="leading" secondItem="ila-Bf-318" secondAttribute="leading" constant="159" id="DNk-tA-ucR"/>
+                            <constraint firstItem="ila-Bf-318" firstAttribute="trailing" secondItem="7sk-Ke-WHE" secondAttribute="trailing" constant="159" id="nc4-WV-CtX"/>
+                            <constraint firstItem="7sk-Ke-WHE" firstAttribute="top" secondItem="ila-Bf-318" secondAttribute="top" constant="79" id="r9K-My-nRu"/>
+                            <constraint firstItem="mho-yx-Fnm" firstAttribute="top" secondItem="7sk-Ke-WHE" secondAttribute="bottom" constant="95" id="vyn-fp-Epe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ufa-qT-otV"/>
+                    <connections>
+                        <outlet property="tableView" destination="mho-yx-Fnm" id="R9Z-u8-X9G"/>
+                        <outlet property="visibleButton" destination="7sk-Ke-WHE" id="znO-io-Mok"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JPN-wh-HEw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="667.93893129770993" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>

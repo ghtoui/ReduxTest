@@ -8,8 +8,6 @@
 import Foundation
 import ReSwift
 
-protocol Action { }
-
 extension CounterState {
     enum counterAction: ReSwift.Action {
         case touchButton

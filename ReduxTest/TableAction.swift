@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import ReSwift
+
+extension TableState {
+    enum tableAction: ReSwift.Action {
+        case touchButton
+    }
+}

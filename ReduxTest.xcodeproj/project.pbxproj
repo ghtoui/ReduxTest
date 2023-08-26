@@ -17,11 +17,15 @@
 		8661FAAC2A95A178000F1024 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8661FAAA2A95A178000F1024 /* LaunchScreen.storyboard */; };
 		8661FAB52A95A3E6000F1024 /* ReSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8661FAB42A95A3E6000F1024 /* ReSwift */; };
 		8661FAB92A95A41E000F1024 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661FAB82A95A41E000F1024 /* State.swift */; };
-		8661FABF2A95A57C000F1024 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661FABE2A95A57C000F1024 /* Action.swift */; };
-		8661FAC22A95A60F000F1024 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661FAC12A95A60F000F1024 /* Reducer.swift */; };
+		8661FABF2A95A57C000F1024 /* CounterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661FABE2A95A57C000F1024 /* CounterAction.swift */; };
+		8661FAC22A95A60F000F1024 /* CounterReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661FAC12A95A60F000F1024 /* CounterReducer.swift */; };
 		8661FAC42A95C259000F1024 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661FAC32A95C259000F1024 /* Store.swift */; };
 		8661FAC62A95C549000F1024 /* CounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661FAC52A95C549000F1024 /* CounterViewController.swift */; };
 		8661FAC82A95CA6B000F1024 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661FAC72A95CA6B000F1024 /* AppReducer.swift */; };
+		86A1948C2A99ABC9000C1B47 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A1948B2A99ABC9000C1B47 /* TableViewController.swift */; };
+		86A1948E2A99AE6A000C1B47 /* TableReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A1948D2A99AE6A000C1B47 /* TableReducer.swift */; };
+		86A194902A99AF89000C1B47 /* TableAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A1948F2A99AF89000C1B47 /* TableAction.swift */; };
+		86A194922A99B038000C1B47 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A194912A99B038000C1B47 /* Action.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,11 +40,15 @@
 		8661FAAB2A95A178000F1024 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8661FAAD2A95A178000F1024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8661FAB82A95A41E000F1024 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		8661FABE2A95A57C000F1024 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		8661FAC12A95A60F000F1024 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		8661FABE2A95A57C000F1024 /* CounterAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterAction.swift; sourceTree = "<group>"; };
+		8661FAC12A95A60F000F1024 /* CounterReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterReducer.swift; sourceTree = "<group>"; };
 		8661FAC32A95C259000F1024 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		8661FAC52A95C549000F1024 /* CounterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterViewController.swift; sourceTree = "<group>"; };
 		8661FAC72A95CA6B000F1024 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
+		86A1948B2A99ABC9000C1B47 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		86A1948D2A99AE6A000C1B47 /* TableReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableReducer.swift; sourceTree = "<group>"; };
+		86A1948F2A99AF89000C1B47 /* TableAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAction.swift; sourceTree = "<group>"; };
+		86A194912A99B038000C1B47 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +127,9 @@
 		8661FABB2A95A55A000F1024 /* Action */ = {
 			isa = PBXGroup;
 			children = (
-				8661FABE2A95A57C000F1024 /* Action.swift */,
+				8661FABE2A95A57C000F1024 /* CounterAction.swift */,
+				86A1948F2A99AF89000C1B47 /* TableAction.swift */,
+				86A194912A99B038000C1B47 /* Action.swift */,
 			);
 			name = Action;
 			sourceTree = "<group>";
@@ -136,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				8661FAC52A95C549000F1024 /* CounterViewController.swift */,
+				86A1948B2A99ABC9000C1B47 /* TableViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -143,8 +154,9 @@
 		8661FAC02A95A608000F1024 /* Reducer */ = {
 			isa = PBXGroup;
 			children = (
-				8661FAC12A95A60F000F1024 /* Reducer.swift */,
+				8661FAC12A95A60F000F1024 /* CounterReducer.swift */,
 				8661FAC72A95CA6B000F1024 /* AppReducer.swift */,
+				86A1948D2A99AE6A000C1B47 /* TableReducer.swift */,
 			);
 			name = Reducer;
 			sourceTree = "<group>";
@@ -227,15 +239,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				8661FAA12A95A178000F1024 /* ViewController.swift in Sources */,
-				8661FABF2A95A57C000F1024 /* Action.swift in Sources */,
+				8661FABF2A95A57C000F1024 /* CounterAction.swift in Sources */,
 				861B5B5F2A95E2DB00B04E85 /* ColorSelector.swift in Sources */,
 				8661FA9D2A95A178000F1024 /* AppDelegate.swift in Sources */,
 				8661FAC62A95C549000F1024 /* CounterViewController.swift in Sources */,
 				8661FAC82A95CA6B000F1024 /* AppReducer.swift in Sources */,
+				86A1948E2A99AE6A000C1B47 /* TableReducer.swift in Sources */,
 				8661FAC42A95C259000F1024 /* Store.swift in Sources */,
+				86A1948C2A99ABC9000C1B47 /* TableViewController.swift in Sources */,
 				8661FAA72A95A178000F1024 /* ReduxTest.xcdatamodeld in Sources */,
-				8661FAC22A95A60F000F1024 /* Reducer.swift in Sources */,
+				8661FAC22A95A60F000F1024 /* CounterReducer.swift in Sources */,
 				8661FA9F2A95A178000F1024 /* SceneDelegate.swift in Sources */,
+				86A194902A99AF89000C1B47 /* TableAction.swift in Sources */,
+				86A194922A99B038000C1B47 /* Action.swift in Sources */,
 				8661FAB92A95A41E000F1024 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
