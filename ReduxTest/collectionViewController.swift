@@ -11,7 +11,7 @@ class collectionViewController: UIViewController {
     enum Section {
         case main
     }
-   
+    
     private var i = 10
     private let sectionHeaderElementKind = "section-header-element-kind"
     @IBOutlet weak var collectionView: UICollectionView!
@@ -34,18 +34,11 @@ class collectionViewController: UIViewController {
         }
         
         collectionView.setCollectionViewLayout(layout, animated: true)
+        let nib = UINib(nibName: "SecondHeaderCollectionReusableView", bundle: nil)
+        collectionView.register(nib, forSupplementaryViewOfKind: "secondHeader", withReuseIdentifier: SecondHeaderCollectionReusableView.identifier)
+        
         
         // Do any additional setup after loading the view.
-    }
-    
-    @IBAction func tentaped(_ sender: Any) {
-        i = 10
-        collectionView.reloadData()
-    }
-    
-    @IBAction func zerotappd(_ sender: Any) {
-        i = 2
-        collectionView.reloadData()
     }
     
     /*
@@ -103,18 +96,15 @@ extension collectionViewController {
         let headerSize2 = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(30))
         let sectionHeader2 = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize2,
-            elementKind: "header2", alignment: .top)
+            elementKind: "secondHeader", alignment: .top)
         sectionHeader2.pinToVisibleBounds = true
         
         let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50))
         
         let sectionFooter = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize, elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
         
-        print(UICollectionView.elementKindSectionHeader)
-        print(UICollectionView.elementKindSectionFooter)
-        
-//        section.boundarySupplementaryItems = [sectionHeader, sectionHeader2, sectionFooter]
-        section.boundarySupplementaryItems = [sectionHeader, sectionFooter]
+        //        section.boundarySupplementaryItems = [sectionHeader, sectionHeader2, sectionFooter]
+        section.boundarySupplementaryItems = [sectionHeader, sectionHeader2, sectionFooter]
         
         return section
         
@@ -166,21 +156,22 @@ extension collectionViewController {
                 header.titleLabel.textColor = .white
                 
                 return header
-            } else if kind == "header2" {
+            }
+            
+            if kind == "secondHeader" {
                 guard let header = collectionView.dequeueReusableSupplementaryView(
                     ofKind: kind,
-                    withReuseIdentifier: HeaderCollectionReusableView.identifier,
-                    for: indexPath) as? HeaderCollectionReusableView else { fatalError("Cannot create new supplementary") }
+                    withReuseIdentifier: SecondHeaderCollectionReusableView.identifier,
+                    for: indexPath) as? SecondHeaderCollectionReusableView else { fatalError("Cannot create new supplementary") }
                 
                 // Populate the view with our data.
-                header.titleLabel.text = "ヘッダー2"
+                header.titleLabel.text = "これが2個目のHeader"
                 
-                header.backgroundColor = .black
-                header.titleLabel.textColor = .white
+                header.backgroundColor = .white
+                header.titleLabel.textColor = .black
                 
                 return header
             }
-
             
             if kind == UICollectionView.elementKindSectionFooter {
                 guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterCollectionReusableView.identifier, for: indexPath) as? FooterCollectionReusableView else {
