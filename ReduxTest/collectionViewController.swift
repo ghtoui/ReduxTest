@@ -8,8 +8,24 @@
 import UIKit
 
 class collectionViewController: UIViewController {
-    enum Section {
-        case main
+    private var isError = false
+    
+    enum Section: CaseIterable {
+        case noHeader
+        case header
+        case error
+    }
+    
+    @IBAction func errorButtonTapp(_ sender: Any) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
+        // initial data
+        if isError {
+            isError = false
+            configureCollectionView()
+        } else {
+            isError = true
+            configureErrrorView()
+        }
     }
     
     private var i = 10
@@ -21,40 +37,62 @@ class collectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDataSource()
-//        collectionView.collectionViewLayout = createRowLayout()
-        collectionView.setCollectionViewLayout(createRowLayout(), animated: true)
+        configureCollectionView()
         
-        let nib = UINib(nibName: "SecondHeaderCollectionReusableView", bundle: nil)
-        collectionView.register(nib, forSupplementaryViewOfKind: "secondHeader", withReuseIdentifier: SecondHeaderCollectionReusableView.identifier)
-        
-        
-        // Do any additional setup after loading the view.
+        /*
+         // MARK: - Navigation
+         
+         // In a storyboard-based application, you will often want to do a little preparation before navigation
+         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         // Get the new view controller using segue.destination.
+         // Pass the selected object to the new view controller.
+         }
+         */
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    private func registerCollectionVIew() {
+        let nib = UINib(nibName: "SecondHeaderCollectionReusableView", bundle: nil)
+        collectionView.register(nib, forSupplementaryViewOfKind: "secondHeader", withReuseIdentifier: SecondHeaderCollectionReusableView.identifier)
+    }
+    private func configureCollectionView() {
+        configureDataSource()
+        registerCollectionVIew()
+        
+        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout { sectionIndex,_ -> NSCollectionLayoutSection? in
+            let sectionLayoutKind = Section.allCases[sectionIndex]
+            // sectionによって作成するセクションを変更する
+            switch sectionLayoutKind {
+            case .noHeader:
+                return self.createRowLayout()
+            case .header:
+                return self.createHeaderLayout()
+            case .error:
+                return self.createErrorLayout()
+            }
+        }
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
+        snapshot.appendSections(Section.allCases)
+        snapshot.appendItems(Array(0..<10), toSection: .header)
+        snapshot.appendItems([11], toSection: .noHeader)
+        dataSource.apply(snapshot, animatingDifferences: false)
+        collectionView.register(errorCell.nib, forCellWithReuseIdentifier: errorCell.identifier)
+    }
+    
+    private func configureErrrorView() {
+        configureDataSource()
+        registerCollectionVIew()
+        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: createErrorLayout())
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
+        snapshot.appendSections(Section.allCases)
+        snapshot.appendItems([20], toSection: .error)
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
 }
 
 extension collectionViewController {
-    func createNullLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalWidth(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let group = NSCollectionLayoutGroup(layoutSize: itemSize)
-        let section = NSCollectionLayoutSection(group: group)
-        return section
-    }
-    
     //    func createRowLayout() -> UICollectionViewLayout {
-    func createRowLayout() -> UICollectionViewLayout {
+    func createHeaderLayout() -> NSCollectionLayoutSection {
         // cellのサイズを定義する
         // 比率
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
@@ -80,43 +118,125 @@ extension collectionViewController {
         
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem( layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        
-        let headerSize2 = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(30))
-        let sectionHeader2 = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize2, elementKind: "secondHeader", alignment: .top)
-        sectionHeader2.pinToVisibleBounds = true
-        sectionHeader2.zIndex.leadingZeroBitCount
+        sectionHeader.pinToVisibleBounds = true
         
         let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50))
         
         let sectionFooter = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize, elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
         
         //        section.boundarySupplementaryItems = [sectionHeader, sectionHeader2, sectionFooter]
-        section.boundarySupplementaryItems = [sectionHeader, sectionHeader2, sectionFooter]
+        section.boundarySupplementaryItems = [sectionHeader, sectionFooter]
+        return section
+    }
+    
+    func createRowLayout() -> NSCollectionLayoutSection {
+        // cellのサイズを定義する
+        // 比率
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        // itemの指定
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        // レイアウトとして返す
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
+        // グループのサイズ
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .fractionalWidth(0.3))
+        
+        // グループに入る項目
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        
+        // セクションの作成
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        
+        // 各item間のスペースを指定できる
+        let spacing = CGFloat(1)
+        group.interItemSpacing = .fixed(spacing)
+        section.interGroupSpacing = spacing
+        
+        return section
+    }
+    
+    func createErrorLayout() -> NSCollectionLayoutSection {
+        // cellのサイズを定義する
+        // 比率
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        // itemの指定
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        // グループのサイズ
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .fractionalWidth(1.5))
+        
+        // グループに入る項目
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        
+        // セクションの作成
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        // 各item間のスペースを指定できる
+        let spacing = CGFloat(1)
+        group.interItemSpacing = .fixed(spacing)
+        section.interGroupSpacing = spacing
+        
+        return section
     }
     
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, identifier: Int) -> UICollectionViewCell? in
             
-            // Get a cell of the desired kind.
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: TestCollectionViewCell.identifier,
-                for: indexPath) as? TestCollectionViewCell else { fatalError("Cannot create new cell") }
-            
-            // Populate the cell with our item description.
-            cell.titleLabel.text = "ポイント獲得"
-            
-            cell.setUp(point: identifier)
-            
-            // backgroung
-            cell.backgroundColor = .lightGray
-            
-            // Return the cell.
-            return cell
+            let section = Section.allCases[indexPath.section]
+            print(section)
+            switch section {
+            case .header:
+                // Get a cell of the desired kind.
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: TestCollectionViewCell.identifier,
+                    for: indexPath) as? TestCollectionViewCell else { fatalError("Cannot create new cell") }
+                
+                // Populate the cell with our item description.
+                cell.titleLabel.text = "ポイント獲得"
+                
+                cell.setUp(point: identifier)
+                
+                // backgroung
+                cell.backgroundColor = .lightGray
+                
+                // Return the cell.
+                return cell
+            case .noHeader:
+                // Get a cell of the desired kind.
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: TestCollectionViewCell.identifier,
+                    for: indexPath) as? TestCollectionViewCell else { fatalError("Cannot create new cell") }
+                
+                // Populate the cell with our item description.
+                cell.titleLabel.text = "ポイント獲得"
+                
+                cell.setUp(point: identifier)
+                
+                // backgroung
+                cell.backgroundColor = .lightGray
+                
+                // Return the cell.
+                return cell
+                
+            case .error :
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: errorCell.identifier,
+                    for: indexPath) as? errorCell else { fatalError("Cannot create new cell") }
+                
+                // Populate the cell with our item description.
+                cell.errorLabel.text = "エラーです"
+                
+                // backgroung
+                cell.backgroundColor = .red
+                
+                // Return the cell.
+                return cell
+            }
         }
         
         dataSource?.supplementaryViewProvider = {
@@ -170,13 +290,5 @@ extension collectionViewController {
             }             // Return the view.
             fatalError("failed to get supplementary view")
         }
-        
-        // initial data
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
-        
-        snapshot.appendSections([.main])
-        snapshot.appendItems(Array(0..<10))
-        dataSource.apply(snapshot, animatingDifferences: false)
     }
-    
 }

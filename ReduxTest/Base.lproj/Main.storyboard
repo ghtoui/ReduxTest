@@ -243,7 +243,13 @@
                             <constraint firstItem="HbW-5Q-vel" firstAttribute="leading" secondItem="wY6-0o-K6e" secondAttribute="leading" id="ntC-ck-Yex"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rNX-py-dyF"/>
+                    <navigationItem key="navigationItem" id="rNX-py-dyF">
+                        <barButtonItem key="rightBarButtonItem" title="error" id="R1R-lH-uYh">
+                            <connections>
+                                <action selector="errorButtonTapp:" destination="Uvq-0g-c7r" id="mCv-N6-Mrn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="HbW-5Q-vel" id="Km0-wK-G14"/>
                     </connections>
