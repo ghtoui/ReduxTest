@@ -38,7 +38,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqB-68-jPg">
-                                        <rect key="frame" x="0.0" y="73.5" width="144" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="49" width="144" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="tableView move"/>
                                         <connections>
@@ -46,11 +46,19 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyy-Rl-uFS">
-                                        <rect key="frame" x="21.5" y="146.5" width="101.5" height="34.5"/>
+                                        <rect key="frame" x="21.5" y="97.5" width="101.5" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="scrollView"/>
                                         <connections>
                                             <segue destination="Uvq-0g-c7r" kind="push" id="xVV-fz-fmc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3V-2j-8LX">
+                                        <rect key="frame" x="11" y="146.5" width="122.5" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="num up View"/>
+                                        <connections>
+                                            <segue destination="QcQ-rx-wnR" kind="show" id="Jvu-Aj-zBO"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -150,9 +158,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HbW-5Q-vel">
-                                <rect key="frame" x="67.666666666666686" y="194" width="240" height="584"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HbW-5Q-vel">
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v5U-0G-lx9">
                                     <size key="itemSize" width="128" height="128"/>
@@ -162,7 +169,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionViewCellIdentifier" id="Sca-5s-s6o" customClass="TestCollectionViewCell" customModule="ReduxTest" customModuleProvider="target">
-                                        <rect key="frame" x="56" y="50" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="50" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="677-9p-t6j">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -194,7 +201,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="headerViewIdentifier" id="zzg-Fc-Emo" customClass="HeaderCollectionReusableView" customModule="ReduxTest" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVy-kA-d4g">
@@ -210,7 +217,7 @@
                                     </connections>
                                 </collectionReusableView>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footerViewIdentifier" id="4nP-b7-t1V" customClass="FooterCollectionReusableView" customModule="ReduxTest" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="178" width="240" height="50"/>
+                                    <rect key="frame" x="0.0" y="178" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCN-ZV-mLe">
@@ -229,6 +236,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wY6-0o-K6e"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wY6-0o-K6e" firstAttribute="trailing" secondItem="HbW-5Q-vel" secondAttribute="trailing" id="7gf-ye-FPQ"/>
+                            <constraint firstItem="HbW-5Q-vel" firstAttribute="top" secondItem="wY6-0o-K6e" secondAttribute="top" id="iiE-ya-8Kh"/>
+                            <constraint firstItem="wY6-0o-K6e" firstAttribute="bottom" secondItem="HbW-5Q-vel" secondAttribute="bottom" id="mS0-dJ-d3y"/>
+                            <constraint firstItem="HbW-5Q-vel" firstAttribute="leading" secondItem="wY6-0o-K6e" secondAttribute="leading" id="ntC-ck-Yex"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rNX-py-dyF"/>
                     <connections>
@@ -238,6 +251,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TzM-bk-lFu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2380" y="2.9556650246305418"/>
+        </scene>
+        <!--Num Up View Controller-->
+        <scene sceneID="u0a-uX-Ghi">
+            <objects>
+                <viewController id="QcQ-rx-wnR" customClass="NumUpViewController" customModule="ReduxTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qmx-uL-F8N">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXr-n9-uNa">
+                                <rect key="frame" x="169.5" y="430.5" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="QcQ-rx-wnR" eventType="touchUpInside" id="ir4-gM-e0b"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="628-XU-VgI">
+                                <rect key="frame" x="0.0" y="142" width="414" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="F0q-S3-An5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uTl-jX-rpv">
+                                <rect key="frame" x="0.0" y="322" width="414" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="moB-ua-bw1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="628-XU-VgI" firstAttribute="centerX" secondItem="Qmx-uL-F8N" secondAttribute="centerX" id="9iG-gf-XoJ"/>
+                            <constraint firstItem="uTl-jX-rpv" firstAttribute="leading" secondItem="moB-ua-bw1" secondAttribute="leading" id="A49-bm-Ken"/>
+                            <constraint firstItem="moB-ua-bw1" firstAttribute="trailing" secondItem="uTl-jX-rpv" secondAttribute="trailing" id="DrP-B2-hHQ"/>
+                            <constraint firstItem="628-XU-VgI" firstAttribute="top" secondItem="moB-ua-bw1" secondAttribute="top" constant="50" id="EHA-6M-gCF"/>
+                            <constraint firstItem="EXr-n9-uNa" firstAttribute="centerY" secondItem="Qmx-uL-F8N" secondAttribute="centerY" id="LT8-IO-hdI"/>
+                            <constraint firstItem="628-XU-VgI" firstAttribute="leading" secondItem="moB-ua-bw1" secondAttribute="leading" id="MCh-mh-Vle"/>
+                            <constraint firstItem="EXr-n9-uNa" firstAttribute="centerX" secondItem="Qmx-uL-F8N" secondAttribute="centerX" id="SCT-lf-RnX"/>
+                            <constraint firstItem="uTl-jX-rpv" firstAttribute="top" secondItem="628-XU-VgI" secondAttribute="bottom" constant="80" id="efm-oI-iGq"/>
+                            <constraint firstItem="moB-ua-bw1" firstAttribute="trailing" secondItem="628-XU-VgI" secondAttribute="trailing" id="kGp-dI-FPg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="R04-DL-gd1"/>
+                    <connections>
+                        <outlet property="num" destination="uTl-jX-rpv" id="Pjm-0o-qct"/>
+                        <outlet property="numUpLabel" destination="628-XU-VgI" id="rjv-nH-lyo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nZs-JU-1a7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3130" y="3"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SmO-hS-FsH">

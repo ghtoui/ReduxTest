@@ -22,18 +22,9 @@ class collectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
-        //        collectionView.collectionViewLayout = createRowLayout()
-        // レイアウトとして返す
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) -> NSCollectionLayoutSection? in
-            switch sectionIndex {
-            case 0:
-                return self.createRowLayout()
-            default:
-                return self.createNullLayout()
-            }
-        }
+//        collectionView.collectionViewLayout = createRowLayout()
+        collectionView.setCollectionViewLayout(createRowLayout(), animated: true)
         
-        collectionView.setCollectionViewLayout(layout, animated: true)
         let nib = UINib(nibName: "SecondHeaderCollectionReusableView", bundle: nil)
         collectionView.register(nib, forSupplementaryViewOfKind: "secondHeader", withReuseIdentifier: SecondHeaderCollectionReusableView.identifier)
         
@@ -63,7 +54,7 @@ extension collectionViewController {
     }
     
     //    func createRowLayout() -> UICollectionViewLayout {
-    func createRowLayout() -> NSCollectionLayoutSection {
+    func createRowLayout() -> UICollectionViewLayout {
         // cellのサイズを定義する
         // 比率
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
@@ -87,17 +78,13 @@ extension collectionViewController {
         group.interItemSpacing = .fixed(spacing)
         section.interGroupSpacing = spacing
         
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(129))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem( layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         
         let headerSize2 = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(30))
-        let sectionHeader2 = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize2,
-            elementKind: "secondHeader", alignment: .top)
+        let sectionHeader2 = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize2, elementKind: "secondHeader", alignment: .top)
         sectionHeader2.pinToVisibleBounds = true
+        sectionHeader2.zIndex.leadingZeroBitCount
         
         let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50))
         
@@ -106,12 +93,9 @@ extension collectionViewController {
         //        section.boundarySupplementaryItems = [sectionHeader, sectionHeader2, sectionFooter]
         section.boundarySupplementaryItems = [sectionHeader, sectionHeader2, sectionFooter]
         
-        return section
-        
-        //        // レイアウトとして返す
-        //        let layout = UICollectionViewCompositionalLayout(section: sectionProvider())
-        //
-        //        return layout
+        // レイアウトとして返す
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
     
     private func configureDataSource() {
